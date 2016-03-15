@@ -2,7 +2,7 @@
   "name": "alphonso",
   "description": "Your own private offline npm registry and backup server",
   "logo": "http://node-js-sample.herokuapp.com/node.svg",
-  "repository": "https://github.com/navya/alphonso",
+  "repository": "https://github.com/bhanuc/alphonso",
   "keywords": ["node", "npm"],
   "env": {
     "CACHE_PACKAGE_TTL": "60",
