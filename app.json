@@ -1,0 +1,15 @@
+{
+  "name": "alphonso",
+  "description": "Your own private offline npm registry and backup server",
+  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "repository": "https://github.com/navya/alphonso",
+  "keywords": ["node", "npm"],
+  "env": {
+    "CACHE_PACKAGE_TTL": "60",
+    "NODE_ENV": "production",
+    "UPLINK": "https://registry.npmjs.org"
+  },
+  "addons": [
+    "heroku-redis"
+  ]
+}

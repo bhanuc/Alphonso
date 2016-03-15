@@ -1,0 +1,41 @@
+{
+  "name": "alphanso",
+  "version": "1.0.0",
+  "description": "private npm registry and backup server",
+  "scripts": {
+    "start": "node server.js"
+    // "test": "mocha && jshint ."
+  },
+  "engines": {
+    "node": "5.7.1"
+  },
+  "repository": "navya/alphanso",
+  "author": "Bhanu P Chaudhary (@bhanuc)",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "3.3.3",
+    "co": "^4.5.4",
+    "co-body": "4.0.0",
+    "got": "6.1.1",
+    "htpasswd-auth": "https://github.com/bhanuc/htpasswd-auth.git",
+    "ioredis": "^1.5.0",
+    "knox": "^0.9.2",
+    "koa": "1.1.2",
+    "koa-compress": "1.0.9",
+    "koa-route": "^2.4.1",
+    "metric-log": "1.0.1",
+    "mkdirp": "^0.5.1",
+    "mz": "^2.3.1",
+    "newrelic": "^1.20.1",
+    "node-uuid": "^1.4.3",
+    "rollbar": "0.5.13"
+  },
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "jshint": "*",
+    "mocha": "^2.2.5",
+    "mocha-junit-reporter": "1.9.1",
+    "supertest": "1.2.0",
+    "supertest-as-promised": "3.0.0"
+  }
+}
