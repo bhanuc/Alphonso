@@ -1,12 +1,9 @@
 'use strict';
 
-if (!process.env.NEW_RELIC_LICENSE_KEY) process.env.NEW_RELIC_ENABLED = 'false';
-process.env.NEW_RELIC_LOG = 'stdout';
 
 let koa      = require('koa');
 let compress = require('koa-compress');
 let r        = require('koa-route');
-let newrelic = require('newrelic');
 let parse    = require('co-body');
 let fs       = require('fs');
 let packages = require('./lib/packages');
@@ -35,14 +32,12 @@ app.use(compress());
 
 // static root page
 app.use(r.get('/', function* () {
-  newrelic.setTransactionName('');
   this.type = 'text/html';
   this.body = fs.createReadStream(__dirname + '/public/index.html');
 }));
 
 // ping
 app.use(r.get('/-/ping', function *() {
-  newrelic.setTransactionName('-/ping');
   this.body = {};
 }));
 
@@ -51,7 +46,6 @@ app.use(r.get('/-/ping', function *() {
 app.use(function* (next) {
   try { yield next; }
   catch (err) {
-    newrelic.noticeError(err);
     if (config.rollbar) rollbar.handleError(err, this.request);
     this.status = err.status || 500;
     this.body   = {error: err.message};
@@ -61,7 +55,6 @@ app.use(function* (next) {
 
 // get package metadata
 app.use(r.get('/:name', function *(name) {
-  newrelic.setTransactionName(':name');
   let etag = this.req.headers['if-none-match'];
   let pkg = yield packages(this.metric).get(name, etag);
   if (pkg === 304) {
@@ -82,7 +75,6 @@ app.use(r.get('/:name', function *(name) {
 
 // get package tarball with sha
 app.use(r.get('/:name/-/:filename/:sha', function *(name, filename, sha) {
-  newrelic.setTransactionName(':name/-/:filename/:sha');
   let tarball = yield tarballs(this.metric, this).get(name, filename, sha);
   if (!tarball) {
     this.status = 404;
@@ -110,7 +102,6 @@ app.use(r.get('/:scope/:name/-/:filename/:sha', function *(scope, name, filename
 
 // get package tarball without sha
 app.use(r.get('/:name/-/:filename', function *(name, filename) {
-  newrelic.setTransactionName(':name/-/:filename');
   let ext = path.extname(filename);
   filename = path.basename(filename, ext);
   this.redirect(`/${name}/-/${filename}/a${ext}`);
@@ -118,7 +109,6 @@ app.use(r.get('/:name/-/:filename', function *(name, filename) {
 
 // login
 app.use(r.put('/-/user/:user', function *() {
-  newrelic.setTransactionName('-/user/:user');
   let auth = yield user.authenticate(yield parse(this));
   if (auth) {
     this.status = 201;
@@ -148,13 +138,11 @@ app.use(function* (next) {
 
 // whoami
 app.use(r.get('/-/whoami', function *() {
-  newrelic.setTransactionName('-/whoami');
   this.body = {username: this.username};
 }));
 
 // npm publish
 app.use(r.put('/:name', function *() {
-  newrelic.setTransactionName(':name');
   let pkg = yield parse(this);
   try {
     yield packages(this.metric).upload(pkg);
