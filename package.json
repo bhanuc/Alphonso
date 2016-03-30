@@ -13,7 +13,7 @@
   "author": "Bhanu P Chaudhary (@bhanuc)",
   "license": "ISC",
   "dependencies": {
-    "bluebird": "3.3.3",
+    "bluebird": "3.3.4",
     "co": "^4.5.4",
     "co-body": "4.0.0",
     "got": "6.1.1",
