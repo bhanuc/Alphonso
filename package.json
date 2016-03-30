@@ -1,5 +1,5 @@
 {
-  "name": "alphanso",
+  "name": "alphonso",
   "version": "1.0.0",
   "description": "private npm registry and backup server",
   "scripts": {
@@ -9,7 +9,7 @@
   "engines": {
     "node": "5.7.1"
   },
-  "repository": "bhanuc/alphanso",
+  "repository": "bhanuc/alphonso",
   "author": "Bhanu P Chaudhary (@bhanuc)",
   "license": "ISC",
   "dependencies": {
