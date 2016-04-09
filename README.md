@@ -5,7 +5,7 @@ Your own private offline npm registry and backup server.
 Overview
 --------
 
-This project allows you to have your own npm registry. This server works with the necessary `npm` commands just like the npmjs.org registry. You can use it to not worry about npm going down or to store your private packages. It performs much faster than npmjs.org and can even be matched with a CDN like Cloudfront to be fast globally.
+This project allows you to have your own npm registry that caches your packages on to the localdisk and saves your time and data, whenever you redownload the same package with same version. This server works with the necessary `npm` commands just like the npmjs.org registry. You can use it to not worry about npm going down or to store your private packages. It performs much faster than npmjs.org and can even be matched with a CDN like Cloudfront to be fast globally.
 
 Rather than trying to copy all the data in npm, this acts more like a proxy. While npm is up, it will cache package data onto the local disk. If npm goes down, it will deliver whatever is available in the cache. This means it won't be a fully comprehensive backup of npm, but you will be able to access anything you accessed before.
 
@@ -46,9 +46,9 @@ Essentially the goal of the project is to quickly deliver current npm data even 
 
 Package metadata mostly contains what versions of a package are available. These cannot be cached for very long since the package can be updated. By default, it is cached for 60 seconds. You can modify this with `CACHE_PACKAGE_TTL`. Etags are also supported and cached to further speed up access.
 
-The tarballs are the actual code and never change once they are uploaded (though they can be removed via unpublishing). These are downloaded one time from npmjs.org per package and version, stored in S3 and in the local tmp folder for future requests. These have a very long max-age header.
+The tarballs are the actual code and never change once they are uploaded (though they can be removed via unpublishing). These are downloaded one time from npmjs.org per package and version, stored in specified folder. 
 
-In the event npmjs.org is offline, elephant will use the most recent package metadata that was requested from npmjs.org until it comes back online.
+In the event npmjs.org is offline, alphonso will use the most recent package metadata that was requested from npmjs.org until it comes back online.
 
 npm commands supported
 ----------------------
