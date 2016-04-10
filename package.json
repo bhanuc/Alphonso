@@ -19,6 +19,7 @@
     "got": "6.1.1",
     "htpasswd-auth": "https://github.com/bhanuc/htpasswd-auth.git",
     "alphonso-fs": "https://github.com/bhanuc/alphonso-fs.git",
+    "alphonso-s3": "https://github.com/bhanuc/alphonso-s3.git",
     "ioredis": "^1.5.0",
     "knox": "^0.9.2",
     "koa": "1.1.2",
