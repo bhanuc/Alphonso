@@ -13,13 +13,13 @@
   "author": "Bhanu P Chaudhary (@bhanuc)",
   "license": "ISC",
   "dependencies": {
+    "alphonso-fs": "https://github.com/bhanuc/alphonso-fs.git",
+    "alphonso-s3": "https://github.com/bhanuc/alphonso-s3.git",
     "bluebird": "3.3.4",
     "co": "^4.5.4",
     "co-body": "4.0.0",
     "got": "6.1.1",
     "htpasswd-auth": "https://github.com/bhanuc/htpasswd-auth.git",
-    "alphonso-fs": "https://github.com/bhanuc/alphonso-fs.git",
-    "alphonso-s3": "https://github.com/bhanuc/alphonso-s3.git",
     "ioredis": "^1.5.0",
     "knox": "^0.9.2",
     "koa": "1.1.2",
@@ -28,8 +28,8 @@
     "metric-log": "1.0.1",
     "mkdirp": "^0.5.1",
     "mz": "^2.3.1",
-    "node-uuid": "^1.4.3",
-    "rollbar": "0.5.13"
+    "rollbar": "0.5.13",
+    "uuid": "^3.0.0"
   },
   "devDependencies": {
     "chai": "^3.0.0",
